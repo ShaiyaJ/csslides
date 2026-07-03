@@ -1,0 +1,71 @@
+/* A wrapper for a set of slides */
+fieldset.slideshow {
+    /* Removing default borders */
+    padding: 0;
+    margin: 0;
+    border: none;
+    
+    position: relative;
+
+    /* Each slide is denoted with a section element, and is given a maximum size
+       (the same as the slideshow container) and is hidden by default */
+    &, & section {
+        width: 100%;
+        min-width: 100%;
+        height: 100%;
+        min-height: 100%;
+    }
+
+    & section {
+        display: none;
+
+        /* The first child is displayed by default */
+        &:first-child {
+            display: block;
+        }
+
+        /* Each slide has a selector that shows the next slide and hides the
+           current one - it takes up the right half of the slide */
+        &:has(> .next:checked) {
+            display: none !important;
+
+            & + section {
+                display: block;
+            }
+        }
+
+        & .next {
+            width: 50%;
+            min-width: 50%;
+            height: 100%;
+            min-height: 100%;
+
+            opacity: 0;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin: 0;
+        }
+
+        /* The previous slide's next toggle is avaliable, allowing to access
+           the previous slide */
+        /*
+        &:has(+ section) .next {
+            display: block !important;
+            left: 0;
+        }
+        */
+    }
+
+}
+
+.vert {
+    display: flex;
+    flex-direction: column;
+}
+
+.hori {
+    display: flex;
+    flex-direction: row;
+}
