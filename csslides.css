@@ -32,7 +32,7 @@ div.slideshow {
         left: 50%;
 
         &:checked {
-            & + section, & + .next {
+            & + section, & + section + .next {
                 display: block;
             }
         }
