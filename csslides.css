@@ -3,22 +3,20 @@ div.slideshow {
     position: relative;
 
     /* Each slide is denoted with a section element, and is given a maximum size
-       (the same as the slideshow container) and is hidden by default */
-    &, & section {
+       (the same as the slideshow container)*/
+    &, & > section {
         width: 100%;
         min-width: 100%;
         height: 100%;
         min-height: 100%;
     }
-
-
-    & section, & .next {
+    /* Each section is hidden by default */
+    & > section {
         display: none;
     }
 
-    /* Each slide has a selector that shows the next slide and hides the current
-       one - it takes up the right half of the slide */
-    & .next {
+    /* Each slide as a selector that displays the next section element */
+    & > [name="selector"] {
         width: 50%;
         min-width: 50%;
         height: 100%;
@@ -29,12 +27,24 @@ div.slideshow {
 
         position: absolute;
         top: 0;
-        left: 50%;
 
-        &:checked {
-            & + section, & + section + .next {
-                display: block;
-            }
+        display: none;
+
+        /* Display the next section based on which section is selected */
+        &:checked + section {
+            display: block;
+        }
+
+        /* Display the previous selector based on selected selector */
+        &:has(+ section + [name="selector"]:checked) {
+            display: block;
+            left: 0;
+        }
+
+        /* Display the next selector based on selected selector */
+        &:checked + section + [name="selector"] {
+            display: block;
+            left: 50%;
         }
     }
 }
