@@ -4,19 +4,18 @@ div.slideshow {
 
     /* Each slide is denoted with a section element, and is given a maximum size
        (the same as the slideshow container)*/
-    &, & > section {
-        width: 100%;
-        min-width: 100%;
-        height: 100%;
-        min-height: 100%;
-    }
-    /* Each section is hidden by default */
     & > section {
-        display: none;
+        width: 0;
+        min-width: 0;
+        height: 0;
+        min-height: 0;
+        overflow: hidden;
+
+        user-select: none;
     }
 
     /* Each slide as a selector that displays the next section element */
-    & > [name="selector"] {
+    & > input {
         width: 50%;
         min-width: 50%;
         height: 100%;
@@ -29,32 +28,26 @@ div.slideshow {
         top: 0;
 
         display: none;
+        opacity: 0;
 
         /* Display the next section based on which section is selected */
         &:checked + section {
-            display: block;
+            width: 100%;
+            min-width: 100%;
+            height: 100%;
+            min-height: 100%;
         }
 
         /* Display the previous selector based on selected selector */
-        &:has(+ section + [name="selector"]:checked) {
+        &:has(+ section + input:checked) {
             display: block;
             left: 0;
         }
 
         /* Display the next selector based on selected selector */
-        &:checked + section + [name="selector"] {
+        &:checked + section + input {
             display: block;
             left: 50%;
         }
     }
-}
-
-.vert {
-    display: flex;
-    flex-direction: column;
-}
-
-.hori {
-    display: flex;
-    flex-direction: row;
 }

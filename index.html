@@ -7,31 +7,135 @@
 
     <body>
         <style>
-            div.slideshow {
+            .slideshow {
+                font-family: sans-serif;
+
+                margin: auto;
+                padding: 1em;
+
+                width: 800px; 
+                height: 600px;
+
                 border: 1px;
                 border-color: black;
                 border-style: solid;
             }
+
+            #title {
+                display: flex;
+                gap: 10%;
+
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
         </style>
 
         <div class="slideshow">
-            <input type="radio" name="selector" checked>
+            <input type="radio" name="presone" checked>
 
-            <section>
-                <h1>1</h1>
+            <section id="title">
+                <div>
+                    <h3>&larr;</h3>
+                    <p>Click for the previous slide!</p>
+                </div>
+
+                <div>
+                    <h1>CSSlides</h1>
+                    <p>Performant, JavaScript-less slides.</p>
+                </div>
+
+                <div>
+                    <h3>&rarr;</h3>
+                    <p>Click for the next slide!</p>
+                </div>
             </section>
 
-            <input type="radio" name="selector">
+            <input type="radio" name="presone">
 
             <section>
-                <h1>2</h1>
+                <h2>The issue: JavaScript</h2>
+                <p>Simply put, not everyone wants to use JavaScript.</p>
+                <p>Some users have safety concerns.</p>
+                <p>Some developers have bloat concerns.</p>
             </section>
 
-            <input type="radio" name="selector">
+            <input type="radio" name="presone">
 
             <section>
-                <h1>3</h1>
+                <h2>The solution: what we already have!</h2>
+                <p>The solution is simple - a radio button state machine!</p>
+                <p>Or, in non technical terms, introducing a little bit of boilerplate to the markup and some very simple CSS in order to get this very presentation to work!</p>
+            </section>
+
+            <input type="radio" name="presone">
+
+            <section>
+                <h2>The message: stop and think!</h2>
+                <p>The moral, or the message, is to not reach for JavaScript!</p>
+                <p>Modern HTML/CSS is powerful and fun, there's a good chance you don't need JavaScript.</p>
+                <p>Sure, for complicated apps it's necessary, but you can build some sophisticated stuff without it! Finding a HTML/CSS alternative will be more performant and allow your app to work in environments where JavaScript isn't avaliable.</p>
+                <p>In a similar spirit to the gemini protocol, help keep the web as 1.0 as possible!</p>
+            </section>
+
+            <input type="radio" name="presone">
+
+            <section id="title">
+                <div>
+                    <h1>Thank you for reading!</h1>
+                    <p>Find the source code <a href="https://github.com/ShaiyaJ/csslides/">here</a>.</p>
+                </div>
             </section>
         </div>
+
+        <details>
+            <summary>Nice presentation, how does it actually work?</summary>
+
+            <div class="intro slideshow">
+                <input type="radio" name="prestwo" checked>
+
+                <section>
+                    <p>It works on a radio button based state machine.</p>
+                </section>
+
+                <input type="radio" name="prestwo">
+
+                <section>
+                    <h2>CSS doesn't really do "state"</h2>
+                    <p>We can't keep track of a current_slide index or anything.</p>
+                    <p>What we <em>can</em> do however is check whether a input[type="radio"] is checked or not.</p>
+                </section>
+
+                <input type="radio" name="prestwo">
+<section>
+                    <h2>The state machine</h2>
+                    <p>Each slide is placed after a input[type="radio", name=*]. If this radio is :checked, then the slide is shown.</p>
+                    <p>The next/previous input element is then positioned on the left or the right, relative to the :checked one.</p>
+                    <p>Each presentation requires a unique name to use in the input tags - or else it gets all confused.</p>
+                </section>
+
+                <input type="radio" name="prestwo">
+
+                <section>
+                    <h2>The actual implementation</h2>
+                    <p>Because CSS is weird, we have to implement the idea like this:</p>
+                    <ol>
+                        <li>Check if a given input[type="radio", name=*] has been checked</li>
+                        <p>If it has, then we make the sibling section (+ sibling) visible.</p>
+                        <li>Check if the next input[type="radio", name=*] is checked</li>
+                        <p>This sets up positioning for the left hand side selector (the "previous slide" button)</p>
+                        <li>Display the next input[type="radio", name=*]</li>
+                        <p>This sets up positioning for the right hand side selector (the "next slide" button)</p>
+                    </ol>
+                </section>
+
+                <input type="radio" name="prestwo">
+
+                <section>
+                    <p>The source code is avaliable! Go to the final slide of the first slideshow to see the link.</p>
+                    <p>Reading it will give you better insight into how it works.</p>
+                </section>
+            </div>
+        </details>
     </body>
 </html>
