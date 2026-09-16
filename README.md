@@ -17,3 +17,6 @@ But a high level overview is as follows:
     1. Create an `<input>` with the type `radio` and name `selector`
     2. Follow it with a `<section>`, filled with the content you want to see.
 4. Whatever slide you want to appear **first**, get the `<input>` element before it and add `checked`.
+
+### Using the racket script
+`csslides.rkt` contains a racket script that allows you to write slides with X-expressions. This allows your slides to be far more compact but does introduce a compilation step into the process.
