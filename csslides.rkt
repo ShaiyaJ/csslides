@@ -4,10 +4,10 @@
 
 (provide presentation)
 (define (presentation name slides)
-    `(div ,@(append-map (lambda (slide) `(
+    `(div ((class "slideshow")) ,@(append-map (lambda (slide) `(
         (input ((type "radio") (name ,name) 
             ,@(if (equal? slide (first slides)) '((checked "true")) '()))) ; Check the first slide
-        (section ,@slide)))
+        (section ,slide)))
     slides)))
 
 (provide presentation-file)
